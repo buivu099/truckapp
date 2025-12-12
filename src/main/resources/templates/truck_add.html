@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thêm một xe tải</title>
+</head>
+<body>
+<h1>Nhập các thông số của xe</h1>
+<form action="/addtruck" th:object="${truck}" method="post">
+    <label for="licensePlate">Biển số</label>
+    <input type="text" th:field="*{licensePlate}" id="licensePlate" name="licensePlate" required><br><br>
+    <label for="model">Model  </label>
+    <input type="text" th:field="*{model}" id="model" name="model" required><br><br>
+    <label for="color">Color  </label>
+    <input type="text" th:field="*{color}" id="color" name="color" required><br><br>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <button type="submit">Thêm xe</button>
+</form>
+
+</body>
+</html>

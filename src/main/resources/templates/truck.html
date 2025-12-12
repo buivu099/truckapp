@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Truck List</title>
+</head>
+<body>
+<h2>Truck List</h2>
+
+<table border="1">
+    <tr>
+        <th>STT</th>
+<!--        <th>ID</th>-->
+        <th>License Plate</th>
+        <th>Model</th>
+        <th>Color</th>
+        <th>Action</th>
+    </tr>
+    <tr th:each="truck, it : ${trucks}">
+        <td th:text="${it.index + 1}"></td>
+<!--        <td th:text="${truck.id}"></td>-->
+        <td th:text="${truck.licensePlate}"></td>
+        <td th:text="${truck.model}"></td>
+        <td th:text="${truck.color}"></td>
+        <td>
+            <a th:href="@{'/truck/edit?id=' + ${truck.id}}">
+            <button >Sửa</button>
+            </a>
+<!--            <a th:href="@{'/truck/delete/' + ${truck.id}}" onclick="return confirm('Bạn có chắc chắn muốn xóa xe này?')">-->
+<!--            <button>Xóa</button></a>-->
+            <form th:action="@{'/truck/delete/' + ${truck.id}}" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa xe này?')">
+                <button type="submit">Xóa</button>
+            </form>
+
+
+
+        </td>
+    </tr>
+</table>
+<br>
+<br>
+<a href="truck/add"><button type="submit">Thêm Mới một xe</button></a>
+<br>
+<h1><a th:href="@{/logout}"><button type="submit">Đăng Xuất</button> </a></h1>
+</body>
+</html>
